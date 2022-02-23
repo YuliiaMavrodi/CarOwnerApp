@@ -1,0 +1,24 @@
+.car-form-container{
+  margin-top: 20px;
+}
+
+
+td {
+  padding-right: 8px;
+  vertical-align: top;
+
+}
+
+td button {
+  margin-top: 4px;
+  height: 50px;
+  /*vertical-align: top;*/
+}
+
+table {
+  width: 900px;
+}
+
+th.title {
+  text-align: left;
+}

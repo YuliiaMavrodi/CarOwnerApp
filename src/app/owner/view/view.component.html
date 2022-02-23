@@ -1,0 +1,27 @@
+<div class="example-container">
+
+  <div class="form-container">
+    <form [formGroup]="form">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label> Last Name
+        </mat-label>
+        <input matInput formControlName="lastName" type="text" readonly [(ngModel)]="owner.lastName">
+      </mat-form-field>
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label> First Name
+        </mat-label>
+        <input matInput formControlName="firstName" type="text" readonly [(ngModel)]="owner.firstName">
+      </mat-form-field>
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label> Middle Name
+        </mat-label>
+        <input matInput formControlName="middleName" type="text" readonly [(ngModel)]="owner.middleName">
+      </mat-form-field>
+      <div class="example-button-row">
+        <button mat-raised-button routerLink="/owner/index" color="primary">
+          <mat-icon>keyboard_backspace</mat-icon>
+          Back</button>
+      </div>
+    </form>
+  </div>
+</div>

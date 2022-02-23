@@ -1,0 +1,42 @@
+/*.example-container{*/
+/*  text-align: center*/
+/*}*/
+
+.form-container {
+  width: 400px;
+  margin: 40px;
+}
+
+.form-field {
+  display: block
+}
+
+.example-button-row button {
+  margin-right: 12px;
+  margin-top: 12px;
+}
+
+table {
+  width: 1000px;
+}
+
+th.title {
+  width: 210px;
+  text-align: left;
+}
+
+.carTitle {
+  margin: 25px 0;
+  font-size: 40px;
+}
+
+.car-form-container {
+  width: 900px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.car-form-container button {
+  margin-top: 3.5px;
+  height: 50px;
+}

@@ -1,0 +1,96 @@
+<div class="example-container">
+  <div class="form-container">
+    <form [formGroup]="form" (submit)="submit()">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label> Last Name
+        </mat-label>
+        <input matInput formControlName="lastName" type="text">
+        <mat-error *ngIf="f['lastName'].touched && f['lastName'].invalid">
+          <span *ngIf="f['lastName'].errors && f['lastName'].errors['required']">This field is mandatory.</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label> First Name
+        </mat-label>
+        <input matInput formControlName="firstName" type="text">
+        <mat-error *ngIf="f['firstName'].touched && f['firstName'].invalid">
+          <span *ngIf="f['firstName'].errors && f['firstName'].errors['required']">This field is mandatory.</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label> Middle Name
+        </mat-label>
+        <input matInput formControlName="middleName" type="text">
+        <mat-error *ngIf="f['middleName'].touched && f['middleName'].invalid">
+          <span *ngIf="f['middleName'].errors && f['middleName'].errors['required']">This field is mandatory.</span>
+        </mat-error>
+      </mat-form-field>
+      <p class="carTitle">Cars</p>
+
+      <div formArrayName="cars">
+        <div *ngFor="let car of cars().controls; let carIndex=index">
+          <div class="car-form-container" [formGroupName]="carIndex">
+            <mat-form-field class="car-form-field" appearance="outline">
+              <mat-label> Licence Plate
+              </mat-label>
+              <input matInput formControlName="licencePlate" type="text">
+                        <mat-error *ngIf="cars().get('licencePlate')?.touched && cars().get('licencePlate')?.invalid">
+                              <span
+                                *ngIf="cars().get('licencePlate')?.errors ">This field is mandatory.</span>
+                        </mat-error>
+            </mat-form-field>
+            <mat-form-field class="car-form-field" appearance="outline">
+              <mat-label> Manufacturer Name
+              </mat-label>
+              <input matInput formControlName="manufacturerName" type="text">
+              <!--          <mat-error *ngIf="f['manufacturerName'].touched && f['manufacturerName'].invalid">-->
+              <!--            <span *ngIf="f['manufacturerName'].errors && f['manufacturerName'].errors['required']">This field is mandatory.</span>-->
+              <!--          </mat-error>-->
+            </mat-form-field>
+            <mat-form-field class="car-form-field" appearance="outline">
+              <mat-label> Model Name
+              </mat-label>
+              <input matInput formControlName="modelName" type="text">
+              <!--          <mat-error *ngIf="f['modelName'].touched && f['modelName'].invalid">-->
+              <!--            <span *ngIf="f['modelName'].errors && f['modelName'].errors['required']">This field is mandatory.</span>-->
+              <!--          </mat-error>-->
+            </mat-form-field>
+            <mat-form-field class="car-form-field" appearance="outline">
+              <mat-label> Manufacturer Year
+              </mat-label>
+              <input matInput formControlName="manufacturerYear" type="text">
+              <!--          <mat-error *ngIf="f['manufacturerYear'].touched && f['manufacturerYear'].invalid">-->
+              <!--            <span *ngIf="f['manufacturerYear'].errors && f['manufacturerYear'].errors['required']">This field is mandatory.</span>-->
+              <!--          </mat-error>-->
+            </mat-form-field>
+            <button mat-raised-button color="warn" type="button" (click)="removeCar(carIndex)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </div>
+
+
+        <button mat-raised-button color="primary" type="button" (click)="addCar()">
+          <mat-icon>add</mat-icon>
+          Add Car
+        </button>
+
+      </div>
+
+
+
+      <!--            <app-car-item #cars></app-car-item>-->
+
+      <div class="example-button-row">
+        <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">
+          <mat-icon>person_add</mat-icon>
+          Add
+        </button>
+        <button mat-raised-button routerLink="/owner/index" color="primary">
+          <mat-icon>keyboard_backspace</mat-icon>
+          Back
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

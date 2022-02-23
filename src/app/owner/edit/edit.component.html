@@ -1,0 +1,39 @@
+<div class="example-container">
+
+  <div class="form-container">
+    <form [formGroup]="form" (submit)="submit()">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label> Last Name
+        </mat-label>
+        <input matInput formControlName="lastName" type="text" [(ngModel)]="owner.lastName">
+        <mat-error *ngIf="f['lastName'].touched && f['lastName'].invalid">
+          <span *ngIf="f['lastName'].errors && f['lastName'].errors['required']">This field is mandatory.</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label> First Name
+        </mat-label>
+        <input matInput formControlName="firstName" type="text" [(ngModel)]="owner.firstName">
+        <mat-error *ngIf="f['firstName'].touched && f['firstName'].invalid">
+          <span *ngIf="f['firstName'].errors && f['firstName'].errors['required']">This field is mandatory.</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label> Middle Name
+        </mat-label>
+        <input matInput formControlName="middleName" type="text" [(ngModel)]="owner.middleName">
+        <mat-error *ngIf="f['middleName'].touched && f['middleName'].invalid">
+          <span *ngIf="f['middleName'].errors && f['middleName'].errors['required']">This field is mandatory.</span>
+        </mat-error>
+      </mat-form-field>
+      <div class="example-button-row">
+        <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">
+          <mat-icon>person_add</mat-icon>
+          Update</button>
+        <button mat-raised-button routerLink="/owner/index" color="primary">
+          <mat-icon>keyboard_backspace</mat-icon>
+          Back</button>
+      </div>
+    </form>
+  </div>
+</div>

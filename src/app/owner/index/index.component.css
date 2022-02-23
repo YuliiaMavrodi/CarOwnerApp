@@ -1,0 +1,15 @@
+button {
+  margin: 20px 0;
+}
+
+table {
+  width: 100%;
+}
+
+.button-row {
+  display: table-cell;
+}
+
+.button-row button {
+  margin: 8px 8px 8px 0;
+}
