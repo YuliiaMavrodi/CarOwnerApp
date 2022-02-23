@@ -23,14 +23,8 @@ export class CreateComponent implements OnInit {
       lastName: ['', [Validators.required]],
       firstName: ['', Validators.required],
       middleName:['', Validators.required],
-      cars: this.formBuilder.array([
-        this.formBuilder.group({
-          licencePlate: ['', [Validators.required]],
-          manufacturerName: ['', Validators.required],
-          modelName: ['', Validators.required],
-          manufacturerYear: ['', Validators.required]
-        })
-      ])
+      cars: this.formBuilder.array([this.newCar()],
+        [Validators.required])
     });
   }
 
@@ -38,25 +32,25 @@ export class CreateComponent implements OnInit {
     return this.form.controls;
   }
 
-  cars(): FormArray {
+  get cars(): FormArray {
     return this.form.get('cars') as FormArray;
   }
 
   newCar(): FormGroup {
     return this.formBuilder.group({
-      licencePlate: ['', [Validators.required]],
+      licencePlate: ['', [Validators.required, Validators.pattern(/^[ABCEHIKMOPTX]{2}\d{4}[ABCEHIKMOPTX]{2}$/)]],
       manufacturerName: ['', Validators.required],
       modelName: ['', Validators.required],
-      manufacturerYear: ['', Validators.required]
+      manufacturerYear: ['', [Validators.required, Validators.min(1990), Validators.max(2022)]]
     });
   }
 
   addCar() {
-    this.cars().push(this.newCar())
+    this.cars.push(this.newCar())
   }
 
   removeCar(carIndex: number) {
-    this.cars().removeAt(carIndex);
+    this.cars.removeAt(carIndex);
   }
 
   submit(){

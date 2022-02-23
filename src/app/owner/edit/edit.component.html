@@ -7,7 +7,7 @@
         </mat-label>
         <input matInput formControlName="lastName" type="text" [(ngModel)]="owner.lastName">
         <mat-error *ngIf="f['lastName'].touched && f['lastName'].invalid">
-          <span *ngIf="f['lastName'].errors && f['lastName'].errors['required']">This field is mandatory.</span>
+          <span *ngIf="f['lastName'].errors && f['lastName'].errors['required']">This field is required.</span>
         </mat-error>
       </mat-form-field>
       <mat-form-field class="form-field" appearance="outline">
@@ -15,7 +15,7 @@
         </mat-label>
         <input matInput formControlName="firstName" type="text" [(ngModel)]="owner.firstName">
         <mat-error *ngIf="f['firstName'].touched && f['firstName'].invalid">
-          <span *ngIf="f['firstName'].errors && f['firstName'].errors['required']">This field is mandatory.</span>
+          <span *ngIf="f['firstName'].errors && f['firstName'].errors['required']">This field is required.</span>
         </mat-error>
       </mat-form-field>
       <mat-form-field class="form-field" appearance="outline">
@@ -23,7 +23,7 @@
         </mat-label>
         <input matInput formControlName="middleName" type="text" [(ngModel)]="owner.middleName">
         <mat-error *ngIf="f['middleName'].touched && f['middleName'].invalid">
-          <span *ngIf="f['middleName'].errors && f['middleName'].errors['required']">This field is mandatory.</span>
+          <span *ngIf="f['middleName'].errors && f['middleName'].errors['required']">This field is required.</span>
         </mat-error>
       </mat-form-field>
       <div class="example-button-row">
