@@ -8,7 +8,6 @@ import {CreateComponent} from './create/create.component';
 import {EditComponent} from './edit/edit.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {MaterialModule} from "../material.module";
-import {CarItemComponent} from "../car-item/car-item.component";
 
 
 @NgModule({
@@ -17,7 +16,6 @@ import {CarItemComponent} from "../car-item/car-item.component";
     ViewComponent,
     CreateComponent,
     EditComponent,
-    CarItemComponent
   ],
   imports: [
     CommonModule,

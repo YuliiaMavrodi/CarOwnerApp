@@ -17,10 +17,45 @@
         </mat-label>
         <input matInput formControlName="middleName" type="text" readonly [(ngModel)]="owner.middleName">
       </mat-form-field>
+
+      <p class="carTitle">Cars</p>
+      <div formArrayName="cars">
+        <div *ngFor="let car of cars.controls; let carIndex=index">
+          <div class="car-form-container" [formGroupName]="carIndex">
+            <mat-form-field class="car-form-field" appearance="outline">
+              <mat-label> Licence Plate
+              </mat-label>
+              <input matInput formControlName="licencePlate" type="text" readonly
+                     [(ngModel)]="owner.cars && owner.cars[carIndex] && owner.cars[carIndex].licencePlate">
+            </mat-form-field>
+            <mat-form-field class="car-form-field" appearance="outline">
+              <mat-label> Manufacturer Name
+              </mat-label>
+              <input matInput formControlName="manufacturerName" type="text" readonly
+                     [(ngModel)]="owner.cars && owner.cars[carIndex] && owner.cars[carIndex].manufacturerName">
+            </mat-form-field>
+            <mat-form-field class="car-form-field" appearance="outline">
+              <mat-label> Model Name
+              </mat-label>
+              <input matInput formControlName="modelName" type="text" readonly
+                     [(ngModel)]="owner.cars && owner.cars[carIndex] && owner.cars[carIndex].modelName">
+            </mat-form-field>
+            <mat-form-field class="car-form-field" appearance="outline">
+              <mat-label> Manufacturer Year
+              </mat-label>
+              <input matInput formControlName="manufacturerYear" type="number" readonly
+                     [(ngModel)]="owner.cars && owner.cars[carIndex] && owner.cars[carIndex].manufacturerYear">
+            </mat-form-field>
+          </div>
+        </div>
+
+      </div>
+
       <div class="example-button-row">
         <button mat-raised-button routerLink="/owner/index" color="primary">
           <mat-icon>keyboard_backspace</mat-icon>
-          Back</button>
+          Back
+        </button>
       </div>
     </form>
   </div>

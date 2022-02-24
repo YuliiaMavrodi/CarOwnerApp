@@ -1,5 +1,43 @@
-<div class="example-container">
+<!--<div class="example-container">-->
+<!--  <div class="form-container">-->
+<!--    <form [formGroup]="form" (submit)="submit()">-->
+<!--      <mat-form-field class="form-field" appearance="outline">-->
+<!--        <mat-label> Last Name-->
+<!--        </mat-label>-->
+<!--        <input matInput formControlName="lastName" type="text" [(ngModel)]="owner.lastName">-->
+<!--        <mat-error *ngIf="f['lastName'].touched && f['lastName'].invalid">-->
+<!--          <span *ngIf="f['lastName'].errors && f['lastName'].errors['required']">This field is required.</span>-->
+<!--        </mat-error>-->
+<!--      </mat-form-field>-->
+<!--      <mat-form-field class="form-field" appearance="outline">-->
+<!--        <mat-label> First Name-->
+<!--        </mat-label>-->
+<!--        <input matInput formControlName="firstName" type="text" [(ngModel)]="owner.firstName">-->
+<!--        <mat-error *ngIf="f['firstName'].touched && f['firstName'].invalid">-->
+<!--          <span *ngIf="f['firstName'].errors && f['firstName'].errors['required']">This field is required.</span>-->
+<!--        </mat-error>-->
+<!--      </mat-form-field>-->
+<!--      <mat-form-field class="form-field" appearance="outline">-->
+<!--        <mat-label> Middle Name-->
+<!--        </mat-label>-->
+<!--        <input matInput formControlName="middleName" type="text" [(ngModel)]="owner.middleName">-->
+<!--        <mat-error *ngIf="f['middleName'].touched && f['middleName'].invalid">-->
+<!--          <span *ngIf="f['middleName'].errors && f['middleName'].errors['required']">This field is required.</span>-->
+<!--        </mat-error>-->
+<!--      </mat-form-field>-->
+<!--      <div class="example-button-row">-->
+<!--        <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">-->
+<!--          <mat-icon>person_add</mat-icon>-->
+<!--          Update</button>-->
+<!--        <button mat-raised-button routerLink="/owner/index" color="primary">-->
+<!--          <mat-icon>keyboard_backspace</mat-icon>-->
+<!--          Back</button>-->
+<!--      </div>-->
+<!--    </form>-->
+<!--  </div>-->
+<!--</div>-->
 
+<div class="example-container">
   <div class="form-container">
     <form [formGroup]="form" (submit)="submit()">
       <mat-form-field class="form-field" appearance="outline">
@@ -26,13 +64,76 @@
           <span *ngIf="f['middleName'].errors && f['middleName'].errors['required']">This field is required.</span>
         </mat-error>
       </mat-form-field>
+      <p class="carTitle">Cars</p>
+
+      <div formArrayName="cars">
+        <span class="custom-error" *ngIf="cars.errors?.['required']">
+          Add at least one car.<br>
+        </span>
+
+        <div *ngFor="let car of cars.controls; let carIndex=index">
+          <div class="car-form-container" [formGroupName]="carIndex">
+            <mat-form-field class="car-form-field" appearance="outline">
+              <mat-label> Licence Plate
+              </mat-label>
+              <input matInput formControlName="licencePlate" type="text" [(ngModel)]="owner.cars && owner.cars[carIndex] && owner.cars[carIndex].licencePlate">
+              <mat-error
+                *ngIf="cars.controls[carIndex].get('licencePlate')?.touched && cars.controls[carIndex].get('licencePlate')?.invalid">
+                <span
+                  *ngIf="cars.controls[carIndex].get('licencePlate')?.errors?.['required']">This field is required.</span>
+                <span
+                  *ngIf="cars.controls[carIndex].get('licencePlate')?.errors?.['pattern']">Incorrect input format.</span>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="car-form-field" appearance="outline">
+              <mat-label> Manufacturer Name
+              </mat-label>
+              <input matInput formControlName="manufacturerName" type="text" [(ngModel)]="owner.cars && owner.cars[carIndex] && owner.cars[carIndex].manufacturerName">
+              <mat-error *ngIf="cars.controls[carIndex].get('manufacturerName')?.touched && cars.controls[carIndex].get('manufacturerName')?.invalid">
+                <span *ngIf="cars.controls[carIndex].get('manufacturerName')?.errors?.['required']">This field is required.</span>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="car-form-field" appearance="outline">
+              <mat-label> Model Name
+              </mat-label>
+              <input matInput formControlName="modelName" type="text" [(ngModel)]="owner.cars && owner.cars[carIndex] && owner.cars[carIndex].modelName">
+              <mat-error *ngIf="cars.controls[carIndex].get('modelName')?.touched && cars.controls[carIndex].get('modelName')?.invalid">
+                <span *ngIf="cars.controls[carIndex].get('modelName')?.errors?.['required']">This field is required.</span>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="car-form-field" appearance="outline">
+              <mat-label> Manufacturer Year
+              </mat-label>
+              <input matInput formControlName="manufacturerYear" type="number" [(ngModel)]="owner.cars && owner.cars[carIndex] && owner.cars[carIndex].manufacturerYear">
+              <mat-error *ngIf="cars.controls[carIndex].get('manufacturerYear')?.touched && cars.controls[carIndex].get('manufacturerYear')?.invalid">
+                <span *ngIf="cars.controls[carIndex].get('manufacturerYear')?.errors?.['required']">This field is required.</span>
+                <span *ngIf="cars.controls[carIndex].get('manufacturerYear')?.errors?.['min']">Value must be in the range 1990 - 2022.</span>
+                <span *ngIf="cars.controls[carIndex].get('manufacturerYear')?.errors?.['max']">Value must be in the range 1990 - 2022.</span>
+              </mat-error>
+            </mat-form-field>
+            <button mat-raised-button color="warn" type="button" (click)="removeCar(carIndex)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </div>
+
+
+        <button mat-raised-button color="primary" type="button" (click)="addCar()">
+          <mat-icon>add</mat-icon>
+          Add Car
+        </button>
+
+      </div>
+
       <div class="example-button-row">
         <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">
           <mat-icon>person_add</mat-icon>
-          Update</button>
+          Add
+        </button>
         <button mat-raised-button routerLink="/owner/index" color="primary">
           <mat-icon>keyboard_backspace</mat-icon>
-          Back</button>
+          Back
+        </button>
       </div>
     </form>
   </div>
